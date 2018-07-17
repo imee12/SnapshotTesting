@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component renders a div 1`] = `
+<div
+  className="dropdown--page"
+>
+  <h1>
+    EXAMPLESSSS
+  </h1>
+</div>
+`;
+
+exports[`Example component renders a div 1`] = `
+<div
+  className="dropdown--page"
+>
+  <h1>
+    EXAMPLESSSS
+  </h1>
+</div>
+`;
