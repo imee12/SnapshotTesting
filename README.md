@@ -43,7 +43,26 @@ OR: you can clone this repository and follow along.
 
 
 ```
-3. Ensure testSetup.js file has an Adapter:
+3. Make sure you package.json has the following:
+
+```javascript
+  "jest": {
+      "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
+      "snapshotSerializers": ["enzyme-to-json/serializer"]
+    }
+
+```
+AND
+
+```javascript
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+
+```
+
+4. Ensure testSetup.js file has an Adapter:
 
 ```javascript
 
@@ -58,7 +77,9 @@ global.mount = mount;
 
 ```
 
-4. Let's use a simple component. Refer to src/components/Example.jsx
+# Let's Test Some Stuff
+
+1. Let's use a simple component. Refer to src/components/Example.jsx
 
 ```javascript
 import React from 'react';
@@ -74,7 +95,7 @@ export default Example
 
 ```
 
-5. Let's write a test for this component. Refer to tests/components/Example.spec.js
+2. Let's write a test for this component. Refer to tests/components/Example.spec.js
 
 ```javascipt
 import React from 'react';
@@ -91,12 +112,83 @@ describe('Example component', () => {
 
 ```
 
+3. Run
+```javascript
+yarn test
+```
+
+4. In your tests folder, you will find another folder __snapshots__ and a file Example.spec.js.snap. Open that up.
+This is your snapshot:
+
+```javascript
+exports[`Example component renders a div 1`] = `
+<div>
+  <h1>
+    EXAMPLE
+  </h1>
+</div>
+`;
+```
+5. In src/components/Example.jsx, change your markup to anything you want.
+Run
+```javascript
+yarn test
+```
+Notice your test has now FAILED:
+
+```javascript
+Received value does not match stored snapshot "Example component renders a div 1".
+```
+
+Review the snapshot versus the received. This was an expected change. How do we fix this?
+
+EASY!
+
+6. Run
+
+```javascript
+yarn test -u
+
+```
+
+This updates your snapshot!
+
+
+As a shortcut while you are developing and writing tests, 
+
+Run
+
+```javascript
+yarn test:watch
+
+```
+
+7. Go back to src/components/Example.jsx. Change the markup again.
+
+The test fails, but you can simply press 'u' to update the snapshot.
+
+
+
 # Tips to Remember
 
 1. When to use shallow versus renderer.create
 
 Shallow rendering renders only component itself without its children. 
-So if you change something in a child component it won’t change shallow output of your component. 
+So if you change something in a child component it won’t change the shallow output of your component. 
 Or a bug, introduced to a child component, won’t break your component’s test. It also doesn’t require DOM.
 
 http://blog.sapegin.me/all/react-jest SHOW EXAMPLE IN EXAMPLE2
+
+USE EXAMPLE2
+
+2. Treat snapshots as code
+
+Commit snapshots and review them as part of your regular code review process. 
+This means treating snapshots as you would any other type of test or code in your project.
+
+3. Use descriptive snapshot names
+
+Always strive to use descriptive test and/or snapshot names for snapshots. 
+The best names describe the expected snapshot content. 
+This makes it easier for reviewers to verify the snapshots during review, and for anyone to know whether or not an outdated snapshot is the correct behavior before updating.
+
