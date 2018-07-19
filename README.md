@@ -177,9 +177,56 @@ Shallow rendering renders only component itself without its children.
 So if you change something in a child component it won’t change the shallow output of your component. 
 Or a bug, introduced to a child component, won’t break your component’s test. It also doesn’t require DOM.
 
-http://blog.sapegin.me/all/react-jest SHOW EXAMPLE IN EXAMPLE2
+- Let's look at an example. Open up:
 
-USE EXAMPLE2
+src/components/Example2.jsx
+tests/components/Example2.spec.js
+tests/components/_snapshots_/Example2.spec.js
+
+Notice the difference between the snapshots for the shallow example and the detailed example.
+
+Shallow:
+```javascript
+exports[`Example2 renders a shallow example 1`] = `
+<div>
+  <h1>
+    EXAMPLE2
+  </h1>
+  <Icon
+    altText=""
+    className=""
+    icon="soccer-ball-o"
+  />
+</div>
+`;
+
+```
+
+Detailed:
+```javascript
+exports[`Example2 renders a detailed example with rendered children 1`] = `
+<div>
+  <h1>
+    EXAMPLE2
+  </h1>
+  <span>
+    <i
+      className="fa fa-soccer-ball-o"
+      title=""
+    />
+    <span
+      className="visually-hidden"
+    >
+      
+    </span>
+  </span>
+</div>
+`;
+
+```
+
+The shallow test example does not render the icon, where the detailed one does.
+
 
 2. Treat snapshots as code
 
@@ -191,4 +238,11 @@ This means treating snapshots as you would any other type of test or code in you
 Always strive to use descriptive test and/or snapshot names for snapshots. 
 The best names describe the expected snapshot content. 
 This makes it easier for reviewers to verify the snapshots during review, and for anyone to know whether or not an outdated snapshot is the correct behavior before updating.
+
+# Resources
+
+https://jestjs.io/docs/en/snapshot-testing
+
+http://blog.sapegin.me/all/react-jest
+
 
