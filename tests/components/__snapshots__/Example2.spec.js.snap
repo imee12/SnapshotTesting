@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Example2 renders a detailed example with rendered children 1`] = `
+<div>
+  <h1>
+    EXAMPLE2
+  </h1>
+  <span>
+    <i
+      className="fa fa-soccer-ball-o"
+      title=""
+    />
+    <span
+      className="visually-hidden"
+    >
+      
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Example2 renders a shallow example 1`] = `
+<div>
+  <h1>
+    EXAMPLE2
+  </h1>
+  <Icon
+    altText=""
+    className=""
+    icon="soccer-ball-o"
+  />
+</div>
+`;

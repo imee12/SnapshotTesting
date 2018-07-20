@@ -2,9 +2,8 @@ import React from 'react';
 
 
 const Example = () => (
-  <div className="dropdown--page">
-    <h1>EXAMPLESSSS</h1>
-
+  <div>
+    <h1>EXAMPLE</h1>
   </div>
 );
 
