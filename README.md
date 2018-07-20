@@ -245,4 +245,4 @@ https://jestjs.io/docs/en/snapshot-testing
 
 http://blog.sapegin.me/all/react-jest
 
-
+https://github.com/sapegin/jest-cheat-sheet
